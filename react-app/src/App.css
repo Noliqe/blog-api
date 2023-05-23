@@ -2,3 +2,119 @@
   text-align: center;
 }
 
+.header {
+  height: 100px;
+  width: 100vw;
+  background-color: wheat;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+}
+
+.post {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.postContainer {
+  border: 1px solid grey;
+  width: 500px;
+}
+
+.postImageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.postImage {
+  border: 1px solid green;
+  background-color: green;
+  width: 400px;
+  height: 100px;
+}
+
+.postLink > button {
+  padding: 2px 20px;
+  border-radius: 5px;
+  border: 1px solid;
+  background-color: green;
+  color: white;
+  height: 30px;
+}
+
+.postId {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.postIdSubTitle {
+  color: grey;
+}
+
+.postIdImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  background-color: green;
+}
+
+.postIdLine {
+  width: 80vw;
+  border-color: black;
+  border: 1px solid rgb(161, 161, 161);
+}
+
+.postIdComments {
+  padding-top: 10px;
+}
+
+.formComments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.submitFormComments {
+  width: 100px;
+}
+
+.comment {
+  padding-top: 5px;
+}
+
+.commentHeader {
+  display: flex;
+  gap: 10px;
+}
+
+.commentText {
+  text-align: left;
+}
+
+.commentImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 2px;
+  border: 1px solid grey;
+  background-color: rgb(231, 231, 231);
+}
+
+.commentDate {
+  text-align: left;
+  font-size: smaller;
+  color: grey;
+}
+
+.commentLine {
+  width: 60vw;
+  border-color: black;
+  border: 1px solid rgb(161, 161, 161);
+}
