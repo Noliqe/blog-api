@@ -12,10 +12,15 @@
   align-items: center;
 }
 
+.posts {
+  padding-top: 10px;
+}
+
 .post {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 10px;
 }
 
 .postContainer {

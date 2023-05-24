@@ -1,5 +1,6 @@
 const Posts = require("../models/posts");
 const async = require("async");
+const { body, validationResult } = require("express-validator");
 
 //Display list of all Posts
 exports.posts_list = async function (req, res, next) {
@@ -63,3 +64,50 @@ exports.post_update_public_POST = async function (req, res, next) {
         return next(err);
     }
 }
+
+// Create request for post
+exports.post_create_POST = [
+    // Validate and sanitize fields.
+    body("title")
+        .trim()
+        .isLength({min: 1})
+        .escape(),
+    body("text")
+        .trim()
+        .isLength({min: 1})
+        .escape(),
+    
+    async (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            // There are errors.
+            return next(errors);
+          }
+    try {
+        // Get date
+        let today = new Date();
+        let dd = String(today.getDate()).padStart(2, '0');
+        let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        let yyyy = today.getFullYear();
+
+        today = mm + '/' + dd + '/' + yyyy;
+
+        // Create a post
+        const post = await Posts.create({
+            title: req.body.title,
+            timestamp: today,
+            text: req.body.text,
+            username: "BigBoss",
+            comments: [],
+            public: false,
+        });
+        const result = await post.save();
+
+        // Succesfull
+        return res.json(post);
+    } catch(err) {
+        console.log(err);
+        return next(err)
+    }
+}
+]

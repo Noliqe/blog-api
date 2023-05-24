@@ -2,6 +2,16 @@
   text-align: center;
 }
 
+.header {
+  height: 100px;
+  width: 100vw;
+  background-color: rgb(245, 198, 179);
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+}
+
 .blogList > button {
   padding: 8px 12px;
 }
@@ -10,4 +20,14 @@
   display: flex;
   justify-content: center;
   gap: 20px;
+  padding-top: 10px;
+}
+
+.formCreatePost {
+  display: flex;
+  flex-direction: column;
+  max-width: 80vw;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
 }
