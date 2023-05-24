@@ -17,7 +17,7 @@ exports.posts_list = async function (req, res, next) {
     }
 }
 
-// GET request for one equipment
+// GET request for one post
 exports.post_item = async function (req, res, next) {
     try {
         const post = await Posts.findById(req.params.id);
@@ -33,7 +33,7 @@ exports.post_item = async function (req, res, next) {
     }
 }
 
-// Get request for one equipment and it's comments
+// Get request for one post and it's comments
 exports.post_and_comments = async function (req, res, next) {
     try {
         const post = await Posts.findById(req.params.id).populate("comments");
@@ -44,6 +44,21 @@ exports.post_and_comments = async function (req, res, next) {
         };
         // Succesfull
         return res.json(post);
+    } catch(err) {
+        return next(err);
+    }
+}
+
+// Update request for post_public
+exports.post_update_public_POST = async function (req, res, next) {
+    try {
+        const post = await Posts.findByIdAndUpdate(
+            {"_id": req.body.id}, // filter
+            {"$set": {"public": req.body.public}}
+        );
+        return res.json({
+            message: "succesfull"
+        })
     } catch(err) {
         return next(err);
     }

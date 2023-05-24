@@ -21,6 +21,7 @@ router.post("/posts/:id/comments", comments_controller.comment_POST);
 
 router.get("/posts/:id/comments/:id", comments_controller.comment_get_one);
 
+router.post("/admin/public", posts_controller.post_update_public_POST);
 
 router.post('/', (req, res) => {
   return res.send('Received a POST HTTP method');

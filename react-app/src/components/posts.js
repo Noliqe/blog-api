@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Post from "./post";
 
 const Posts = () => {
-    const [apiResponse, setApiResponse] = useState("");
+    const [apiResponse, setApiResponse] = useState([]);
   
       useEffect(() => {
         const getPosts = async () => {
@@ -13,11 +13,13 @@ const Posts = () => {
                 let data = result;
                 let dataForm = [];
                 data.forEach(element => {
-                    dataForm.push(
-                        <Post 
-                        key={element._id}
-                        data={element}/>
-                    )
+                    if (element.public) {
+                        dataForm.push(
+                            <Post 
+                            key={element._id}
+                            data={element}/>
+                        )
+                    }
                 });
                 setApiResponse(dataForm);
 
@@ -30,7 +32,7 @@ const Posts = () => {
   
 return (
     <div className='posts'>
-        {apiResponse}
+        {apiResponse.length > 0 ? apiResponse : "There are no posts..."}
     </div>
 )};
   
