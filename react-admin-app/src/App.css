@@ -31,3 +31,20 @@
   align-items: center;
   padding-top: 10px;
 }
+
+.commentId {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.comment {
+  border: 1px solid grey;
+  width: 80vw;
+}
+
+.commentEdit {
+  display: flex;
+  justify-content: space-around;
+}

@@ -36,11 +36,11 @@ function BlogList() {
             data.forEach(element => {
                 dataForm.push(
                     <div className='blogList' key={element._id}>
-                      <p>{element.title}</p>
+                      <a href={"/comments/" + element._id}>{element.title}</a>
                       <button 
                       style={{ backgroundColor: element.public ? "green" : "red"}}
                       onClick={() => {handlePublic(element.public ? "false" : "true", element._id)}}
-                      >{element.public ? "public" : "not-public"}</button>
+                      >{element.public ? "unpublish" : "publish"}</button>
                     </div>
                 )
             });

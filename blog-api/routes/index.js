@@ -25,10 +25,17 @@ router.post("/admin/public", posts_controller.post_update_public_POST);
 
 router.post("/admin/create-post", posts_controller.post_create_POST);
 
+router.get("/admin/comments/:id", posts_controller.post_and_comments);
+
+router.post("/admin/delete-comment", comments_controller.remove_comment_POST);
+
+router.post("/admin/edit-comment", comments_controller.edit_comment_POST);
+
+router.get("/admin/comment/:id", comments_controller.comment_get_one); 
+
 router.post('/', (req, res) => {
   return res.send('Received a POST HTTP method');
 });
 
-router.get('/blogs')
 
 module.exports = router;

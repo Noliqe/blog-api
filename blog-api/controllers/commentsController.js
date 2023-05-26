@@ -18,6 +18,22 @@ exports.comment_get_one = async function (req, res, next) {
     }
 }
 
+// GET request for one Comment
+exports.comment_get_one_Id = async function (req, res, next) {
+    try {
+        const comment = await Comments.findById(req.body.id);
+        if (!comment || comment.length === 0) {
+            return res.json({
+                message: "No comments have been found!"
+              });
+        };
+        // Succesfull
+        return res.json(comment);
+    } catch(err) {
+        return next(err);
+    }
+}
+
 // POST request comment
 exports.comment_POST = [
     // Validate and sanitize fields.
@@ -66,4 +82,52 @@ exports.comment_POST = [
         return next(err)
     }
 }
+]
+
+// delete request for comment POST
+exports.remove_comment_POST = async function (req, res, next) {
+    try {
+        const post = await Posts.findByIdAndUpdate(
+            {"_id": req.body.postId}, // filter
+            {"$pull": { comments: req.body.commentId}}
+        );
+        // succesfull
+        const comment = await Comments.findByIdAndRemove(req.body.commentId)
+
+        // succesfull
+        return res.json({
+            message: "succesfull"
+        })
+    } catch(err) {
+        return next(err);
+    }
+}
+
+// edit request for comment POST
+exports.edit_comment_POST = [
+    // Validate and sanitize fields.
+    body("text")
+        .trim()
+        .isLength({min: 1})
+        .escape(),
+
+    async (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+                // There are errors.
+                return next(errors);
+              }
+        try {
+            const comment = await Comments.findByIdAndUpdate(
+                {"_id": req.body.id}, // filter
+                {"$set": {"text": req.body.text}}
+            );
+    
+            // Succesfull
+            return res.json(comment);
+        } catch(err) {
+            console.log(err);
+            return next(err)
+        }
+    }
 ]
